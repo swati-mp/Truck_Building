@@ -1,0 +1,4 @@
+warehouse_id,warehouse_name,state,latitude,longitude
+W1,Delhi Warehouse,Delhi,28.6139,77.2090
+W2,Mumbai Warehouse,Maharashtra,19.0760,72.8777
+W3,Bangalore Warehouse,Karnataka,12.9716,77.5946

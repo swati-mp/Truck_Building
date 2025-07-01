@@ -1,0 +1,6 @@
+truck_id,truck_type,capacity_tons,cost_per_km,fuel_efficiency_kmpl,state
+1,Mini Truck,1.0,8.0,14.0,Maharashtra
+2,Large Truck,10.0,25.0,4.0,Karnataka
+3,Tempo,0.8,6.5,16.0,Maharashtra
+4,Heavy Duty Truck,15.0,35.0,3.5,Telangana
+5,Medium Truck,1.5,12.0,12.0,Tamil Nadu

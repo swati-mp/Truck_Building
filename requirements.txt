@@ -1,0 +1,10 @@
+streamlit
+streamlit-authenticator==0.4.2
+pandas
+numpy
+geopy
+folium
+fpdf2
+PyYAML
+streamlit-folium
+

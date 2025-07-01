@@ -1,0 +1,11 @@
+customer_id,customer_name,address,state,latitude,longitude
+1,ABC Pvt Ltd,Pune,Maharashtra,18.5204,73.8567
+2,XYZ Enterprises,Mumbai,Maharashtra,19.076,72.8777
+3,FreshMart,Bangalore,Karnataka,12.9716,77.5946
+4,SpeedyLogix,Hyderabad,Telangana,17.385,78.4867
+5,SouthCorp,Chennai,Tamil Nadu,13.0827,80.2707
+6,Alpha Traders,Wakad Pune,Maharashtra,18.5912,73.7387
+7,Global Foods,Andheri Mumbai,Maharashtra,19.2183,72.9781
+8,City Superstore,Indiranagar Bangalore,Karnataka,13.0358,77.597
+9,EastPoint Distributors,Banjara Hills Hyderabad,Telangana,17.4082,78.4935
+11,FreshMart,Mumbai,Maharashtra,19.054999,72.8692035

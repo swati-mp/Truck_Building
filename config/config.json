@@ -1,0 +1,4 @@
+{
+    "min_load_percent": 60,
+    "max_load_percent": 95
+}
