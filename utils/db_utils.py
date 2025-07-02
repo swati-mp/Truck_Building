@@ -129,3 +129,11 @@ def group_orders_by_truck_filo(allocation_results, filtered_orders, trucks_df, c
 
     return pd.DataFrame(used_trucks)
 
+def get_customer_warehouse(customer_row, warehouses_df):
+    """Return the (lat, lon) of the warehouse assigned to the customer’s state"""
+    state = customer_row.get("state")
+    warehouse = warehouses_df[warehouses_df["state"] == state]
+    if not warehouse.empty:
+        return warehouse.iloc[0]["latitude"], warehouse.iloc[0]["longitude"]
+    else:
+        return None, None

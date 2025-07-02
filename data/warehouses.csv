@@ -1,4 +1,29 @@
 warehouse_id,warehouse_name,state,latitude,longitude
 W1,Delhi Warehouse,Delhi,28.6139,77.2090
 W2,Mumbai Warehouse,Maharashtra,19.0760,72.8777
-W3,Bangalore Warehouse,Karnataka,12.9716,77.5946
+W3,Bangalore Warehouse,Karnataka,14.2320,76.3710
+W4,Bhopal Warehouse,Madhya Pradesh,23.2599,77.4126
+W5,Jaipur Warehouse,Rajasthan,26.5600,74.8624
+W6,Lucknow Warehouse,Uttar Pradesh,26.8467,80.9462
+W7,Patna Warehouse,Bihar,25.5941,85.1376
+W8,Guwahati Warehouse,Assam,26.2006,92.9376
+W9,Hyderabad Warehouse,Telangana,17.3606,78.4747
+W10,Chennai Warehouse,Tamil Nadu,10.9094,78.3665
+W11,Kolkata Warehouse,West Bengal,23.4733,87.2816
+W12,Ranchi Warehouse,Jharkhand,23.6102,85.2799
+W13,Raipur Warehouse,Chhattisgarh,21.2514,81.6296
+W14,Panaji Warehouse,Goa,15.2993,74.1240
+W15,Shimla Warehouse,Himachal Pradesh,31.1048,77.1734
+W16,Srinagar Warehouse,Jammu and Kashmir,33.7782,76.5762
+W17,Bhubaneswar Warehouse,Odisha,20.9517,85.0985
+W18,Dehradun Warehouse,Uttarakhand,30.3165,78.0322
+W19,Imphal Warehouse,Manipur,24.8170,93.9368
+W20,Shillong Warehouse,Meghalaya,25.5788,91.8933
+W21,Agartala Warehouse,Tripura,23.8315,91.2868
+W22,Aizawl Warehouse,Mizoram,23.7271,92.7176
+W23,Kohima Warehouse,Nagaland,25.6747,94.1100
+W24,Itanagar Warehouse,Arunachal Pradesh,27.0844,93.6053
+W25,Gangtok Warehouse,Sikkim,27.3314,88.6138
+W26,Chandigarh Warehouse,Chandigarh,30.7333,76.7794
+W27,Puducherry Warehouse,Puducherry,11.9139,79.8145
+

@@ -1,30 +1,45 @@
 import folium
 from folium.plugins import BeautifyIcon
-import pandas as pd
-import random
-from branca.colormap import linear
+from utils.constants import COLOR_PALETTE
+import numpy as np
 
-# Define a palette for multiple routes
-COLOR_PALETTE = [
-    "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
-    "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
-]
+def create_colored_route_map(allocated_df, customers_df, warehouses_df):
+    # Calculate map center based on all warehouse locations
+    all_lat = warehouses_df['latitude'].tolist()
+    all_lon = warehouses_df['longitude'].tolist()
+    center_lat = np.mean(all_lat)
+    center_lon = np.mean(all_lon)
 
-def create_colored_route_map(allocated_df, customers_df):
-    start_coord = (customers_df.iloc[0]['latitude'], customers_df.iloc[0]['longitude'])
-    m = folium.Map(location=start_coord, zoom_start=10)
+    # ✅ Initialize folium map here with wider zoom
+    m = folium.Map(location=[center_lat, center_lon], zoom_start=4)  # 👈 Add here
 
-    # Group by each truck
+    # 🏢 Plot all warehouses as green buildings
+    for _, warehouse in warehouses_df.iterrows():
+        folium.Marker(
+            location=(warehouse['latitude'], warehouse['longitude']),
+            popup=f"🏢 Warehouse: {warehouse['warehouse_name']} ({warehouse['state']})",
+            icon=folium.Icon(color="green", icon="building", prefix='fa')
+        ).add_to(m)
+
+    # 🚛 Plot delivery routes per truck
     grouped = allocated_df.groupby("truck_id")
     for i, (truck_id, group) in enumerate(grouped):
         color = COLOR_PALETTE[i % len(COLOR_PALETTE)]
-        points = list(zip(group['latitude'], group['longitude']))
 
-        # Draw polyline for the truck's route
+        # Get warehouse for this truck’s customers
+        state = group.iloc[0].get('state') or customers_df.iloc[0].get('state')
+        warehouse = warehouses_df[warehouses_df['state'] == state]
+        if not warehouse.empty:
+            start_coord = (warehouse.iloc[0]['latitude'], warehouse.iloc[0]['longitude'])
+        else:
+            start_coord = [center_lat, center_lon]  # fallback
+
+        points = list(zip(group['latitude'], group['longitude']))
+        points.insert(0, start_coord)
+
         folium.PolyLine(points, color=color, weight=4, opacity=0.8, tooltip=f"Truck {truck_id}").add_to(m)
 
-        # Add customer markers with order labels
-        for j, row in group.iterrows():
+        for _, row in group.iterrows():
             folium.Marker(
                 location=(row['latitude'], row['longitude']),
                 icon=BeautifyIcon(
