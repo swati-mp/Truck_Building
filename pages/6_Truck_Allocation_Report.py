@@ -5,13 +5,17 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium
 
+# ✅ Save the map as HTML and offer download
+from io import BytesIO
+import base64
+
 from utils import db_utils, logic, map_utils
 from utils import auth
 
 auth.require_login_and_sidebar()
 
-# Access role
-role = st.session_state.get("role", "admin")
+# # Access role
+# role = st.session_state.get("role", "admin")
 
 st.title("📦🚛 Truck Allocation & Route Optimization")
 
@@ -55,6 +59,11 @@ else:
                     filtered_orders, customers_df, products_df, trucks_df, config,
                     fuel_price_per_litre=90.0, mileage_kmpl=4.0, warehouses_df=warehouses_df
                 )
+                # filo_allocated_df = logic.filo_grouped_truck_allocation(
+                #     filtered_orders, customers_df, products_df, trucks_df, config,
+                #     warehouses_df=warehouses_df
+                # )
+
 
                 # Save to session
                 st.session_state.allocation_results = allocation_results
@@ -67,17 +76,16 @@ else:
 
     # If allocation already run
     if st.session_state.allocation_results is not None:
-        st.subheader("📄 Allocation Report")
-        st.dataframe(st.session_state.allocation_results.drop(columns=["assigned_truck_type"], errors="ignore"))
+        st.subheader("📄 Customer Report")
 
-        st.subheader("📦 Multi-Truck Allocation (Optimized by Cost per kg)")
-        multi_truck_df = logic.multi_truck_allocation(st.session_state.customer_summary, trucks_df, config)
-        st.dataframe(multi_truck_df)
+        customer_report_df = st.session_state.allocation_results.drop(columns=["assigned_truck_type"], errors="ignore")
+        st.dataframe(customer_report_df)
 
+    # ✅ Add download button
         st.download_button(
-            "⬇️ Download Multi-Truck Allocation CSV",
-            data=multi_truck_df.to_csv(index=False),
-            file_name="multi_truck_allocation.csv",
+            label="⬇️ Download Customer Report (CSV)",
+            data=customer_report_df.to_csv(index=False).encode('utf-8'),
+            file_name="customer_report.csv",
             mime="text/csv"
         )
 
@@ -90,6 +98,14 @@ else:
         ).drop(columns=["assigned_truck_type"], errors="ignore")
         st.dataframe(detailed_allocation)
 
+        # ✅ Add download button
+        st.download_button(
+            label="⬇️ Download Detailed Allocation (CSV)",
+            data=detailed_allocation.to_csv(index=False).encode('utf-8'),
+            file_name="detailed_truck_allocation.csv",
+            mime="text/csv"
+        )
+
         st.subheader("📦 FILO-based Truck Allocations (Route Aware + Fuel Cost + Emissions)")
         st.dataframe(st.session_state.filo_allocated_df)
 
@@ -100,20 +116,24 @@ else:
             mime="text/csv"
         )
 
-
-
-        # 🗺️ Route Map with Warehouse Origin
+        # # 🗺️ Route Map with Warehouse Origin
         st.subheader("🗺️ Route Map (FILO with Color-coded Trucks)")
+
         filo_map = map_utils.create_colored_route_map(
             st.session_state.filo_allocated_df, customers_df, warehouses_df
         )
         st_folium(filo_map, width=900)
 
+        # Save map to HTML in memory
+        map_html = filo_map.get_root().render()
+        map_buffer = BytesIO(map_html.encode("utf-8"))
+
+        # Download button for HTML map
         st.download_button(
-            "⬇️ Download Basic Allocation CSV",
-            data=st.session_state.allocation_results.to_csv(index=False),
-            file_name="basic_truck_allocation.csv",
-            mime="text/csv"
+            label="⬇️ Download Route Map (HTML)",
+            data=map_buffer,
+            file_name="filo_route_map.html",
+            mime="text/html"
         )
 
 

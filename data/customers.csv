@@ -1,11 +1,20 @@
-customer_id,customer_name,address,state,latitude,longitude
-1,ABC Pvt Ltd,Pune,Maharashtra,18.5204,73.8567
-2,XYZ Enterprises,Mumbai,Maharashtra,19.066,72.8677
-3,FreshMart,Bangalore,Karnataka,12.9716,77.5946
-4,SpeedyLogix,Hyderabad,Telangana,17.385,78.4867
-5,SouthCorp,Chennai,Tamil Nadu,13.0827,80.2707
-6,Alpha Traders,Wakad Pune,Maharashtra,18.5912,73.7387
-7,Global Foods,Andheri Mumbai,Maharashtra,19.2183,72.9781
-8,City Superstore,Indiranagar Bangalore,Karnataka,13.0358,77.597
-9,EastPoint Distributors,Banjara Hills Hyderabad,Telangana,17.4082,78.4935
-11,FreshMart,Mumbai,Maharashtra,19.054999,72.8692035
+customer_id,customer_name,address,state,latitude,longitude,username,password,phone,email
+1,ABC Pvt Ltd,pune,Maharashtra,18.5213738,73.8545071,user1,user123,1234567892,seeker1@gmail.com
+2,XYZ Ltd,Mumbai,Maharashtra,19.076,72.8777,user2,user234,,
+3,Delta Corp,Bangalore,Karnataka,12.9716,77.5946,user3,user345,,
+4,TechNova,Hyderabad,Telangana,17.385,78.4867,user4,user456,,
+5,GreenLeaf Agro,Ahmedabad,Gujarat,23.0225,72.5714,user5,user567,,
+6,InstaBuild,Chennai,Tamil Nadu,13.0827,80.2707,user6,user678,,
+7,NextGen Foods,Jaipur,Rajasthan,26.9124,75.7873,user7,user789,,
+9,Future ,"Pune, Maharashtra",,18.5213738,73.8545071,user101,101,,
+12,XYZ Ltd,Mumbai Suburban,Maharashtra,19.054999,72.8692035,user102,102,,
+13,Future Tech,Pimpri-Chinchwad,411089,18.6279288,73.8009829,user103,103,,
+14,Future Tech,Pimpri-Chinchwad,411089,18.6279288,73.8009829,user103,103,,
+15,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
+16,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
+17,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
+18,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
+19,Future Tech,Pimpri-Chinchwad,,18.6279288,73.8009829,user105,105,,
+20,Future Tech,Pimpri-Chinchwad,Maharashtra,18.6279288,73.8009829,user105,105,,
+21,Future,Pune,Maharashtra,18.5213738,73.8545071,user107,107,,
+22,Future,Pune,Maharashtra,18.5213738,73.8545071,user107,107,,

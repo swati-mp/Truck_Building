@@ -1,33 +1,111 @@
+# import os
+# import json
+# import pandas as pd
+# import numpy as np
+
+# # # Define the path to the data directory
+# # DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
+# # CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config', 'config.json')
+
+# # def load_csv(filename):
+# #     """Load a CSV file from the data directory with cleaned column names."""
+# #     path = os.path.join(DATA_DIR, filename)
+# #     if os.path.exists(path):
+# #         df = pd.read_csv(path)
+# #         df.columns = [col.strip() for col in df.columns]  # Clean headers
+# #         return df
+# #     else:
+# #         return pd.DataFrame()
+# import os
+# import pandas as pd
+
+# # Safe base path detection
+# try:
+#     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# except NameError:
+#     BASE_DIR = os.getcwd()
+
+# DATA_DIR = os.path.join(BASE_DIR, 'data')
+# CONFIG_FILE = os.path.join(BASE_DIR, 'config', 'config.json')
+
+# def load_csv(filename):
+#     """Load a CSV file from the data directory with cleaned column names."""
+#     path = os.path.join(DATA_DIR, filename)
+#     if os.path.exists(path):
+#         try:
+#             df = pd.read_csv(path)
+#             df.columns = [col.strip() for col in df.columns]
+#             return df
+#         except Exception as e:
+#             print(f"[ERROR] Failed to read {filename}: {e}")
+#             return pd.DataFrame()
+#     else:
+#         print(f"[WARN] File not found: {path}")
+#         return pd.DataFrame()
+
+# def save_csv(df, filename):
+#     """Save a DataFrame to a CSV file in the data directory."""
+#     path = os.path.join(DATA_DIR, filename)
+#     df.to_csv(path, index=False)
+
+# def delete_entry_by_id(df, id_column, delete_id):
+#     """Delete entry with given ID (as str to handle int/str mismatch)."""
+#     df[id_column] = df[id_column].astype(str)
+#     delete_id = str(delete_id)
+#     return df[df[id_column] != delete_id]
+
+# def get_next_id(df, id_column):
+#     """Get the next ID based on max current ID."""
+#     if df.empty or id_column not in df.columns:
+#         return 1
+#     try:
+#         return int(df[id_column].astype(int).max()) + 1
+#     except:
+#         return 1
+
 import os
-import json
 import pandas as pd
+import json
 import numpy as np
 
-# Define the path to the data directory
-DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
-CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config', 'config.json')
+try:
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+except NameError:
+    BASE_DIR = os.getcwd()
+
+DATA_DIR = os.path.join(BASE_DIR, 'data')
+CONFIG_FILE = os.path.join(BASE_DIR, 'config', 'config.json')
 
 def load_csv(filename):
-    """Load a CSV file from the data directory with cleaned column names."""
     path = os.path.join(DATA_DIR, filename)
     if os.path.exists(path):
-        df = pd.read_csv(path)
-        df.columns = [col.strip() for col in df.columns]  # 🚀 always clean headers
-        return df
+        try:
+            df = pd.read_csv(path)
+            df.columns = [col.strip() for col in df.columns]
+            return df
+        except Exception as e:
+            print(f"[ERROR] Failed to read {filename}: {e}")
+            return pd.DataFrame()
     else:
+        print(f"[WARN] File not found: {path}")
         return pd.DataFrame()
 
 def save_csv(df, filename):
-    """Save a DataFrame to a CSV file in the data directory."""
     path = os.path.join(DATA_DIR, filename)
     df.to_csv(path, index=False)
 
 def delete_entry_by_id(df, id_column, delete_id):
-    # Ensure proper comparison (in case of int vs str mismatch)
     df[id_column] = df[id_column].astype(str)
     delete_id = str(delete_id)
-
     return df[df[id_column] != delete_id]
+
+def get_next_id(df, id_column):
+    if df.empty or id_column not in df.columns:
+        return 1
+    try:
+        return int(df[id_column].astype(int).max()) + 1
+    except:
+        return 1
 
 def load_config():
     """Load configuration from JSON file or return default values."""
@@ -81,15 +159,49 @@ def group_orders_by_truck(allocation_df, orders_df):
     ).reset_index()
     return grouped
 
+'''gives detailed truck allocation based on order ID with customer, product, and quantity details.
+
+# def generate_truck_allocation_details(allocation_df, orders_df, customers_df, products_df):
+#     merged_orders = pd.merge(orders_df, customers_df, on="customer_id", how="left")
+#     merged_orders = pd.merge(merged_orders, products_df, on="product_id", how="left")
+#     merged_orders = pd.merge(merged_orders, allocation_df[['customer_id', 'assigned_truck_type']], on="customer_id", how="left")
+
+#     detailed_allocation = merged_orders[[
+#         'assigned_truck_type', 'order_id', 'customer_name', 'product_name', 'num_boxes', 'weight_per_box', 'size_per_box'
+#     ]]
+#     return detailed_allocation.sort_values(by=['assigned_truck_type', 'customer_name'])
+'''
+
+## 📦 Generates summarized truck allocation details per customer:
+# - Merges orders, customers, products, and truck assignment data
+
 def generate_truck_allocation_details(allocation_df, orders_df, customers_df, products_df):
+    # Merge all relevant data
     merged_orders = pd.merge(orders_df, customers_df, on="customer_id", how="left")
     merged_orders = pd.merge(merged_orders, products_df, on="product_id", how="left")
-    merged_orders = pd.merge(merged_orders, allocation_df[['customer_id', 'assigned_truck_type']], on="customer_id", how="left")
+    merged_orders = pd.merge(
+        merged_orders,
+        allocation_df[['customer_id', 'assigned_truck_type']],
+        on="customer_id",
+        how="left"
+    )
 
-    detailed_allocation = merged_orders[[
-        'assigned_truck_type', 'order_id', 'customer_name', 'product_name', 'num_boxes', 'weight_per_box', 'size_per_box'
-    ]]
-    return detailed_allocation.sort_values(by=['assigned_truck_type', 'customer_name'])
+    # Group and aggregate
+    grouped = merged_orders.groupby(['assigned_truck_type', 'customer_name']).agg({
+        'product_name': lambda x: ', '.join(sorted(set(x))),  # combine unique products
+        'num_boxes': 'sum',
+        'weight_per_box': 'sum',
+        'size_per_box': 'sum'
+    }).reset_index()
+
+    # Optional: rename columns for clarity
+    grouped = grouped.rename(columns={
+        'num_boxes': 'total_boxes',
+        'weight_per_box': 'total_weight',
+        'size_per_box': 'total_volume'
+    })
+
+    return grouped.sort_values(by=['assigned_truck_type', 'customer_name'])
 
 def group_orders_by_truck_filo(allocation_results, filtered_orders, trucks_df, config):
     trucks_df = trucks_df.copy()

@@ -5,8 +5,8 @@ import os
 from utils import auth
 auth.require_login_and_sidebar()
 
-# Access role:
-role = st.session_state.get("role", "admin") 
+# # Access role:
+# role = st.session_state.get("role", "admin") 
 
 st.title("⚙️ Truck Load Configuration")
 

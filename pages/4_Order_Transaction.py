@@ -7,8 +7,8 @@ from utils import auth
 
 auth.require_login_and_sidebar()
 
-# Access role
-role = st.session_state.get("role", "admin")
+# # Access role
+# role = st.session_state.get("role", "admin")
 
 st.title("📝 Order Transactions")
 
@@ -48,7 +48,8 @@ with st.expander("➕ Add New Order"):
                     "customer_id": customer_id,
                     "product_id": product_id,
                     "num_boxes": num_boxes,
-                    "delivery_date": delivery_date
+                    "delivery_date": delivery_date,
+                    'placed_by': st.session_state['username']
                 }])
                 orders_df = pd.concat([orders_df, new_entry], ignore_index=True)
                 db_utils.save_csv(orders_df, ORDER_FILE)

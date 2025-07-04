@@ -1,11 +1,12 @@
-product_id,product_name,weight_per_box,size_per_box
-101,Milk Powder 1kg,10.0,0.015
-102,Rice Bag 5kg,5.0,0.025
-103,Sugar Pack 1kg,1.0,0.012
-104,Detergent Box,2.0,0.02
-105,Oil Can 15L,15.0,0.03
-106,Biscuit Carton,4.0,0.018
-107,Toilet Paper Pack,3.0,0.022
-108,Wheat Flour 10kg,10.0,0.035
-109,Shampoo Box 500ml,0.5,0.005
-110,Shampoo Bottle 500ml,0.5,0.00128
+product_id,product_name,weight_per_box,size_per_box,available_stock
+101,Milk Powder 1kg,10.0,0.015,0
+102,Rice Bag 5kg,5.0,0.025,0
+103,Sugar Pack 1kg,1.0,0.012,0
+104,Detergent Box,2.0,0.02,0
+105,Oil Can 15L,15.0,0.03,15
+106,Biscuit Carton,4.0,0.018,0
+107,Toilet Paper Pack,3.0,0.022,0
+108,Wheat Flour 10kg,10.0,0.035,0
+109,Shampoo Box 500ml,0.5,0.005,0
+110,Shampoo Bottle 500ml,0.5,0.00128,0
+111,Chocolate,10.0,0.000512,15
