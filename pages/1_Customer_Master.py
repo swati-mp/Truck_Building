@@ -4,6 +4,7 @@ from geopy.geocoders import Nominatim
 import pandas as pd
 from io import BytesIO
 import base64
+import os
 
 st.set_page_config(page_title="Customer Master", layout="wide")
 auth.require_login_and_sidebar()
@@ -14,9 +15,10 @@ st.title("👤 Customer Profile")
 CUSTOMER_FILE = "customers.csv"
 ORDERS_FILE = "orders.csv"
 PRODUCT_FILE = "products.csv"
+ALLOCATION_FILE = "allocation.csv"
 geolocator = Nominatim(user_agent="truck_delivery_optimizer")
 
-# Session values
+# Session info
 role = st.session_state.get("role")
 username = st.session_state.get("username")
 customer_id = st.session_state.get("customer_id")
@@ -25,13 +27,14 @@ customer_id = st.session_state.get("customer_id")
 customers_df = db_utils.load_csv(CUSTOMER_FILE)
 orders_df = db_utils.load_csv(ORDERS_FILE)
 products_df = db_utils.load_csv(PRODUCT_FILE)
-allocation_df = st.session_state.get("filo_allocated_df", pd.DataFrame())
+allocation_df = db_utils.load_csv(ALLOCATION_FILE) if os.path.exists(os.path.join("data", ALLOCATION_FILE)) else pd.DataFrame()
 
-# Ensure expected columns exist
+# Check for required column
 if "customer_id" not in customers_df.columns:
     st.error("❌ 'customer_id' column missing in customers.csv")
     st.stop()
 
+# ========== ADMIN ==========
 if role == "admin":
     st.subheader("📋 Customer List")
 
@@ -48,7 +51,7 @@ if role == "admin":
         def get_table_download_link_excel(df, filename):
             val = to_excel(df)
             b64 = base64.b64encode(val).decode()
-            href = f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}.xlsx">📥 Download Excel</a>'
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download="{filename}.xlsx">🗕️ Download Excel</a>'
             return href
 
         st.markdown(get_table_download_link_excel(customers_df, "customers"), unsafe_allow_html=True)
@@ -102,6 +105,7 @@ if role == "admin":
     else:
         st.info("ℹ️ No customer data available.")
 
+# ========== USER ==========
 else:
     st.subheader("👤 Your Information")
 
@@ -158,18 +162,24 @@ else:
             if 'order_date' in user_orders.columns:
                 user_orders['order_date'] = pd.to_datetime(user_orders['order_date'], errors='coerce').dt.date
 
-            # Merge with product names
             user_orders = user_orders.merge(products_df[['product_id', 'product_name']], on='product_id', how='left')
 
-            # Add status
-            if not allocation_df.empty and "customer_id" in allocation_df.columns:
-                alloc_info = allocation_df[['customer_id', 'truck_id']].drop_duplicates()
-                user_orders = user_orders.merge(alloc_info, on='customer_id', how='left')
-                user_orders['Status'] = user_orders['truck_id'].apply(lambda x: "Allocated" if pd.notna(x) else "Not Allocated")
+            # ✅ Merge using customer_id and delivery_date to get truck_id and truck_type
+            if not allocation_df.empty and "truck_id" in allocation_df.columns:
+                allocation_df['delivery_date'] = pd.to_datetime(allocation_df['delivery_date'], errors='coerce').dt.date
+                user_orders = user_orders.merge(
+                    allocation_df[['customer_id', 'delivery_date', 'truck_id', 'truck_type']],
+                    on=['customer_id', 'delivery_date'],
+                    how='left'
+                )
+                user_orders['Status'] = user_orders.apply(
+                    lambda row: f"Allocated (Truck {row['truck_id']} - {row['truck_type']})"
+                    if pd.notna(row['truck_id']) else "Not Allocated",
+                    axis=1
+                )
             else:
                 user_orders['Status'] = "Not Allocated"
 
-            # Filter
             search_term = st.text_input("🔍 Search orders by Product Name or Order ID")
             if search_term:
                 user_orders = user_orders[
@@ -177,7 +187,6 @@ else:
                     user_orders['order_id'].astype(str).str.contains(search_term, case=False)
                 ]
 
-            # Display columns
             display_cols = ['order_id', 'product_name']
             if 'order_date' in user_orders.columns:
                 display_cols.append('order_date')

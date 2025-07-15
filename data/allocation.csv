@@ -1,0 +1,18 @@
+customer_id,customer_name,latitude,longitude,delivery_date,total_weight_kg,total_volume_m3,route_order,truck_type,truck_id,route_id,fuel_cost,emissions_estimate,truck_capacity_kg,utilization_percent,state,total_distance_km
+10,Jain Suppliers,21.1458,79.0882,2025-07-06,1300.0,4.0,9,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+15,Patil Wholesalers,20.9374,77.7796,2025-07-06,1200.0,2.1,8,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+11,Krishna Traders,19.9975,73.7898,2025-07-06,760.0,2.6500000000000004,7,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+13,Mahadev Mart,19.8762,75.3433,2025-07-06,1690.0,5.2,6,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+14,Om Supermart,17.6599,75.9064,2025-07-06,1000.0,2.75,5,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+12,Lokmanya Stores,16.705,74.2433,2025-07-06,1080.0,1.9,4,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+16,Satara Traders,17.68,74.0075,2025-07-06,700.0,1.05,3,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+3,Chaitanya Distributors,18.5204,73.8567,2025-07-06,800.0,1.2,2,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+1,Apollo Foods,19.0915,72.8935,2025-07-06,1000.0,1.5,1,Large Truck,cc06b4a7,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46
+10,Jain Suppliers,21.1458,79.0882,2025-07-07,494.0,1.52,8,Mini Truck,b2fa571a,1,31034.59,924.14,1000.0,94.4,Maharashtra,1379.31
+15,Patil Wholesalers,20.9374,77.7796,2025-07-07,450.0,0.6749999999999999,7,Mini Truck,b2fa571a,1,31034.59,924.14,1000.0,94.4,Maharashtra,1379.31
+12,Lokmanya Stores,16.705,74.2433,2025-07-07,550.0,0.825,6,Mini Truck,2ae98a59,2,19398.1,577.63,1000.0,85.0,Maharashtra,862.14
+14,Om Supermart,17.6599,75.9064,2025-07-07,300.0,1.2,5,Mini Truck,2ae98a59,2,19398.1,577.63,1000.0,85.0,Maharashtra,862.14
+13,Mahadev Mart,19.8762,75.3433,2025-07-07,390.0,1.2,4,Mini Truck,c4e9996f,3,16212.97,482.79,1000.0,79.0,Maharashtra,720.58
+11,Krishna Traders,19.9975,73.7898,2025-07-07,200.0,0.8,3,Mini Truck,c4e9996f,3,16212.97,482.79,1000.0,79.0,Maharashtra,720.58
+3,Chaitanya Distributors,18.5204,73.8567,2025-07-07,200.0,0.3,2,Mini Truck,c4e9996f,3,16212.97,482.79,1000.0,79.0,Maharashtra,720.58
+1,Apollo Foods,19.0915,72.8935,2025-07-07,500.0,0.75,1,Tempo,85fd251a,4,107.52,3.2,800.0,62.5,Maharashtra,4.78

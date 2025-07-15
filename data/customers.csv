@@ -1,20 +1,17 @@
 customer_id,customer_name,address,state,latitude,longitude,username,password,phone,email
-1,ABC Pvt Ltd,pune,Maharashtra,18.5213738,73.8545071,user1,user123,1234567892,seeker1@gmail.com
-2,XYZ Ltd,Mumbai,Maharashtra,19.076,72.8777,user2,user234,,
-3,Delta Corp,Bangalore,Karnataka,12.9716,77.5946,user3,user345,,
-4,TechNova,Hyderabad,Telangana,17.385,78.4867,user4,user456,,
-5,GreenLeaf Agro,Ahmedabad,Gujarat,23.0225,72.5714,user5,user567,,
-6,InstaBuild,Chennai,Tamil Nadu,13.0827,80.2707,user6,user678,,
-7,NextGen Foods,Jaipur,Rajasthan,26.9124,75.7873,user7,user789,,
-9,Future ,"Pune, Maharashtra",,18.5213738,73.8545071,user101,101,,
-12,XYZ Ltd,Mumbai Suburban,Maharashtra,19.054999,72.8692035,user102,102,,
-13,Future Tech,Pimpri-Chinchwad,411089,18.6279288,73.8009829,user103,103,,
-14,Future Tech,Pimpri-Chinchwad,411089,18.6279288,73.8009829,user103,103,,
-15,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
-16,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
-17,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
-18,Future Tech,"Pimpri-Chinchwad, Maharashtra",,18.6279288,73.8009829,user103,103,,
-19,Future Tech,Pimpri-Chinchwad,,18.6279288,73.8009829,user105,105,,
-20,Future Tech,Pimpri-Chinchwad,Maharashtra,18.6279288,73.8009829,user105,105,,
-21,Future,Pune,Maharashtra,18.5213738,73.8545071,user107,107,,
-22,Future,Pune,Maharashtra,18.5213738,73.8545071,user107,107,,
+1,Apollo Foods,Mumbai,Maharashtra,19.0915,72.8935,user1,user123,9876543210,apollo@example.com
+2,Bharat Retail,Bangalore,Karnataka,12.9716,77.5946,user2,user234,9876543211,bharat@example.com
+3,Chaitanya Distributors,Pune,Maharashtra,18.5204,73.8567,user3,user345,9876543212,chaitanya@example.com
+4,Dev Retailers,Ahmedabad,Gujarat,23.0225,72.5714,user4,user456,9876543213,dev@example.com
+5,EcoMart,Hyderabad,Telangana,17.3850,78.4867,user5,user567,9876543214,ecomart@example.com
+6,FreshMart,Chennai,Tamil Nadu,13.0827,80.2707,user6,user678,9876543215,freshmart@example.com
+7,Goyal Distributors,Jaipur,Rajasthan,26.9124,75.7873,user7,user789,9876543216,goyal@example.com
+8,HariBazaar,Surat,Gujarat,21.1702,72.8311,user8,user890,9876543217,hari@example.com
+9,Indore Wholesalers,Indore,Madhya Pradesh,22.7196,75.8577,user9,user901,9876543218,indore@example.com
+10,Jain Suppliers,Nagpur,Maharashtra,21.1458,79.0882,user10,user012,9876543219,jain@example.com
+11,Krishna Traders,Nashik,Maharashtra,19.9975,73.7898,user11,user111,9876543220,krishna@example.com
+12,Lokmanya Stores,Kolhapur,Maharashtra,16.7050,74.2433,user12,user222,9876543221,lokmanya@example.com
+13,Mahadev Mart,Aurangabad,Maharashtra,19.8762,75.3433,user13,user333,9876543222,mahadev@example.com
+14,Om Supermart,Solapur,Maharashtra,17.6599,75.9064,user14,user444,9876543223,om@example.com
+15,Patil Wholesalers,Amravati,Maharashtra,20.9374,77.7796,user15,user555,9876543224,patil@example.com
+16,Satara Traders,Satara,Maharashtra,17.6800,74.0075,user16,user666,9876543225,satara@example.com
