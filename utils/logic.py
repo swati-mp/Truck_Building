@@ -110,144 +110,11 @@ def run_allocation(filtered_orders, customers_df, products_df, trucks_df, config
 
     return pd.concat(all_allocations, ignore_index=True), pd.concat(all_routes, ignore_index=True)
 
-
-
 def calculate_total_route_distance(route_coords):
     return sum(
         geodesic(route_coords[i], route_coords[i + 1]).km
         for i in range(len(route_coords) - 1)
     )
-
-
-# def filo_grouped_truck_allocation(filtered_orders, customers_df, products_df, trucks_df, config,
-#                                    fuel_price_per_litre=90.0, mileage_kmpl=4.0, warehouses_df=None):
-#     import uuid
-#     import os
-#     import pandas as pd
-#     from utils.logic import calculate_total_route_distance, nearest_neighbor_route
-
-#     all_truck_allocations = []
-#     states = customers_df['state'].dropna().unique()
-
-#     # Ensure consistent dtypes
-#     filtered_orders['customer_id'] = filtered_orders['customer_id'].astype(str)
-#     filtered_orders['product_id'] = filtered_orders['product_id'].astype(str)
-#     customers_df['customer_id'] = customers_df['customer_id'].astype(str)
-#     products_df['product_id'] = products_df['product_id'].astype(str)
-
-#     target_date = pd.to_datetime(filtered_orders['delivery_date'].iloc[0]).date()
-#     min_percent = config.get('min_load_percent', 60) / 100
-#     max_percent = config.get('max_load_percent', 95) / 100
-
-#     for state in states:
-#         state_customers = customers_df[customers_df['state'] == state]
-#         state_orders = filtered_orders[filtered_orders['customer_id'].isin(state_customers['customer_id'])]
-#         state_trucks = trucks_df[trucks_df['state'] == state]
-#         state_warehouse = warehouses_df[warehouses_df['state'] == state] if warehouses_df is not None else pd.DataFrame()
-
-#         if state_orders.empty or state_trucks.empty:
-#             continue
-
-#         merged = state_orders.merge(state_customers, on='customer_id').merge(products_df, on='product_id')
-#         merged['total_weight_kg'] = merged['num_boxes'] * merged['weight_per_box']
-#         merged['total_volume_m3'] = merged['num_boxes'] * merged['size_per_box']
-
-#         customer_summary = merged.groupby(
-#             ['customer_id', 'customer_name', 'latitude', 'longitude', 'delivery_date']
-#         ).agg({
-#             'total_weight_kg': 'sum',
-#             'total_volume_m3': 'sum'
-#         }).reset_index()
-
-#         # Route logic
-#         start_coord = (
-#             (state_warehouse.iloc[0]['latitude'], state_warehouse.iloc[0]['longitude'])
-#             if not state_warehouse.empty else
-#             (customer_summary['latitude'].mean(), customer_summary['longitude'].mean())
-#         )
-#         customer_coords = list(zip(customer_summary['latitude'], customer_summary['longitude']))
-#         ordered_route = nearest_neighbor_route(customer_coords, start_coord)[1:]
-
-#         customer_summary['route_order'] = customer_summary.apply(
-#             lambda row: ordered_route.index((row['latitude'], row['longitude'])) + 1
-#             if (row['latitude'], row['longitude']) in ordered_route else 0,
-#             axis=1
-#         )
-#         customer_summary = customer_summary.sort_values(by='route_order', ascending=False)
-
-#         # Truck capacity thresholds
-#         state_trucks = state_trucks.copy()
-#         state_trucks['min_capacity_kg'] = state_trucks['capacity_tons'] * 1000 * min_percent
-#         state_trucks['max_capacity_kg'] = state_trucks['capacity_tons'] * 1000 * max_percent
-#         state_trucks = state_trucks.sort_values(by='capacity_tons', ascending=False)
-
-#         truck_allocations = []
-#         remaining_customers = customer_summary.copy()
-#         truck_id = 1
-
-#         while not remaining_customers.empty:
-#             assigned = pd.DataFrame()
-
-#             for _, truck in state_trucks.iterrows():
-#                 truck_capacity = truck['capacity_tons'] * 1000
-#                 min_capacity = truck['min_capacity_kg']
-#                 max_capacity = truck['max_capacity_kg']
-
-#                 load_sum = 0
-#                 selected_rows = []
-
-#                 for idx, row in remaining_customers.iterrows():
-#                     if load_sum + row['total_weight_kg'] <= truck_capacity:
-#                         selected_rows.append(idx)
-#                         load_sum += row['total_weight_kg']
-
-#                 if selected_rows and min_capacity <= load_sum <= max_capacity:
-#                     assigned = remaining_customers.loc[selected_rows].copy()
-#                     remaining_customers.drop(index=selected_rows, inplace=True)
-
-#                     assigned['truck_type'] = truck['truck_type']
-#                     assigned['truck_id'] = str(uuid.uuid4())[:8]
-#                     assigned['route_id'] = truck_id
-#                     assigned['truck_capacity_kg'] = truck_capacity
-#                     assigned['utilization_percent'] = round((load_sum / truck_capacity) * 100, 2)
-#                     assigned['state'] = state
-#                     assigned['delivery_date'] = assigned['delivery_date'].iloc[0]
-
-#                     # Route + fuel calculations
-#                     route_points = assigned.sort_values("route_order")[["latitude", "longitude"]].values
-#                     depot = start_coord if start_coord else route_points[0]
-#                     full_route = [depot] + [tuple(coord) for coord in route_points] + [depot]
-#                     total_distance_km = calculate_total_route_distance(full_route)
-
-#                     fuel_used_litres = total_distance_km / mileage_kmpl
-#                     assigned['total_distance_km'] = round(total_distance_km, 2)
-#                     assigned['fuel_cost'] = round(fuel_used_litres * fuel_price_per_litre, 2)
-#                     assigned['emissions_estimate'] = round(fuel_used_litres * 2.68, 2)
-
-#                     truck_allocations.append(assigned)
-#                     truck_id += 1
-#                     break  # Move to next batch after assigning this truck
-
-#             if assigned.empty:
-#                 break  # Prevent infinite loop
-
-#         if truck_allocations:
-#             all_truck_allocations.append(pd.concat(truck_allocations, ignore_index=True))
-
-#     final_df = pd.concat(all_truck_allocations, ignore_index=True) if all_truck_allocations else pd.DataFrame()
-
-#     # Save to file
-#     existing_path = "data/allocation.csv"
-#     if os.path.exists(existing_path):
-#         existing_df = pd.read_csv(existing_path)
-#         existing_df['delivery_date'] = pd.to_datetime(existing_df['delivery_date']).dt.date
-#         existing_df = existing_df[existing_df['delivery_date'] != target_date]
-#         final_df = pd.concat([existing_df, final_df], ignore_index=True)
-
-#     if not final_df.empty:
-#         final_df.to_csv(existing_path, index=False)
-
-#     return final_df
 
 def filo_grouped_truck_allocation(filtered_orders, customers_df, products_df, trucks_df, config,
                                    fuel_price_per_litre=90.0, mileage_kmpl=4.0, warehouses_df=None):
@@ -385,3 +252,5 @@ def filo_grouped_truck_allocation(filtered_orders, customers_df, products_df, tr
         final_df.to_csv(existing_path, index=False)
 
     return final_df
+
+

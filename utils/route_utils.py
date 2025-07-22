@@ -1,3 +1,4 @@
+#For Point to Point connections
 import numpy as np
 
 # Fast Haversine Function
@@ -36,3 +37,4 @@ def nearest_neighbor_route(customer_coords, start_coord):
         current = nearest_coord
 
     return visited
+

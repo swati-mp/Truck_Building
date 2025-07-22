@@ -103,8 +103,40 @@ def group_orders_by_truck(allocation_df, orders_df):
     ).reset_index()
     return grouped
 
-# Truck allocation summary
+# # Truck allocation summary
+# # def generate_truck_allocation_details(allocation_df, orders_df, customers_df, products_df):
+# #     merged_orders = pd.merge(orders_df, customers_df, on="customer_id", how="left")
+# #     merged_orders = pd.merge(merged_orders, products_df, on="product_id", how="left")
+# #     merged_orders = pd.merge(
+# #         merged_orders,
+# #         allocation_df[['customer_id', 'assigned_truck_type']],
+# #         on="customer_id",
+# #         how="left"
+# #     )
+
+# #     grouped = merged_orders.groupby(['assigned_truck_type', 'customer_name']).agg({
+# #         'product_name': lambda x: ', '.join(sorted(set(x))),
+# #         'num_boxes': 'sum',
+# #         'weight_per_box': 'sum',
+# #         'size_per_box': 'sum'
+# #     }).reset_index()
+
+# #     grouped = grouped.rename(columns={
+# #         'num_boxes': 'total_boxes',
+# #         'weight_per_box': 'total_weight',
+# #         'size_per_box': 'total_volume'
+# #     })
+
+# #     return grouped.sort_values(by=['assigned_truck_type', 'customer_name'])
 # def generate_truck_allocation_details(allocation_df, orders_df, customers_df, products_df):
+#     # Convert merge keys to string to avoid type mismatch error
+#     orders_df['customer_id'] = orders_df['customer_id'].astype(str)
+#     customers_df['customer_id'] = customers_df['customer_id'].astype(str)
+#     orders_df['product_id'] = orders_df['product_id'].astype(str)
+#     products_df['product_id'] = products_df['product_id'].astype(str)
+#     allocation_df['customer_id'] = allocation_df['customer_id'].astype(str)
+
+#     # Merge in correct order
 #     merged_orders = pd.merge(orders_df, customers_df, on="customer_id", how="left")
 #     merged_orders = pd.merge(merged_orders, products_df, on="product_id", how="left")
 #     merged_orders = pd.merge(
@@ -128,38 +160,6 @@ def group_orders_by_truck(allocation_df, orders_df):
 #     })
 
 #     return grouped.sort_values(by=['assigned_truck_type', 'customer_name'])
-def generate_truck_allocation_details(allocation_df, orders_df, customers_df, products_df):
-    # Convert merge keys to string to avoid type mismatch error
-    orders_df['customer_id'] = orders_df['customer_id'].astype(str)
-    customers_df['customer_id'] = customers_df['customer_id'].astype(str)
-    orders_df['product_id'] = orders_df['product_id'].astype(str)
-    products_df['product_id'] = products_df['product_id'].astype(str)
-    allocation_df['customer_id'] = allocation_df['customer_id'].astype(str)
-
-    # Merge in correct order
-    merged_orders = pd.merge(orders_df, customers_df, on="customer_id", how="left")
-    merged_orders = pd.merge(merged_orders, products_df, on="product_id", how="left")
-    merged_orders = pd.merge(
-        merged_orders,
-        allocation_df[['customer_id', 'assigned_truck_type']],
-        on="customer_id",
-        how="left"
-    )
-
-    grouped = merged_orders.groupby(['assigned_truck_type', 'customer_name']).agg({
-        'product_name': lambda x: ', '.join(sorted(set(x))),
-        'num_boxes': 'sum',
-        'weight_per_box': 'sum',
-        'size_per_box': 'sum'
-    }).reset_index()
-
-    grouped = grouped.rename(columns={
-        'num_boxes': 'total_boxes',
-        'weight_per_box': 'total_weight',
-        'size_per_box': 'total_volume'
-    })
-
-    return grouped.sort_values(by=['assigned_truck_type', 'customer_name'])
 
 
 # FILO allocation grouping

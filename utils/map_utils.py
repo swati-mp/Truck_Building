@@ -100,3 +100,4 @@ def create_colored_route_map(allocated_df, customers_df, warehouses_df):
     folium.LayerControl(collapsed=False).add_to(m)
 
     return m
+

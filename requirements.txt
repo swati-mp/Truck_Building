@@ -8,4 +8,5 @@ fpdf2
 PyYAML
 streamlit-folium
 XlsxWriter
-
+routingpy
+openrouteservice
