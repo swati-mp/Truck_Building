@@ -20,4 +20,11 @@ order_id,customer_id,product_id,num_boxes,order_date,delivery_date,placed_by
 1026,12,101,55,2025-07-04,2025-07-07,user12
 1027,13,103,30,2025-07-04,2025-07-07,user13
 1028,14,102,60,2025-07-04,2025-07-07,user14
+<<<<<<< HEAD
 1029,15,101,45,2025-07-04,2025-07-07,user15
+=======
+1029,15,101,45,2025-07-04,2025-07-07,user15
+1030,1,101,10,2025-07-26,2025-07-27,user1
+1030,1,102,10,2025-07-26,2025-07-27,user1
+
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)

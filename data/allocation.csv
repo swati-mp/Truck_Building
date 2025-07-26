@@ -7,6 +7,7 @@ customer_id,customer_name,latitude,longitude,delivery_date,total_weight_kg,total
 11,Krishna Traders,19.9975,73.7898,2025-07-07,200.0,0.8,3,Mini Truck,b037b580,3,16212.97,482.79,1000.0,79.0,Maharashtra,720.58,"[(np.float64(19.076), np.float64(72.8777)), (np.float64(18.5204), np.float64(73.8567)), (np.float64(19.9975), np.float64(73.7898)), (np.float64(19.8762), np.float64(75.3433)), (np.float64(19.076), np.float64(72.8777))]"
 3,Chaitanya Distributors,18.5204,73.8567,2025-07-07,200.0,0.3,2,Mini Truck,b037b580,3,16212.97,482.79,1000.0,79.0,Maharashtra,720.58,"[(np.float64(19.076), np.float64(72.8777)), (np.float64(18.5204), np.float64(73.8567)), (np.float64(19.9975), np.float64(73.7898)), (np.float64(19.8762), np.float64(75.3433)), (np.float64(19.076), np.float64(72.8777))]"
 1,Apollo Foods,19.0915,72.8935,2025-07-07,500.0,0.75,1,Tempo,68d00f50,4,107.52,3.2,800.0,62.5,Maharashtra,4.78,"[(np.float64(19.076), np.float64(72.8777)), (np.float64(19.0915), np.float64(72.8935)), (np.float64(19.076), np.float64(72.8777))]"
+<<<<<<< HEAD
 10,Jain Suppliers,21.1458,79.0882,2025-07-06,1300.0,4.0,9,Large Truck,67c8fa73,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46,
 15,Patil Wholesalers,20.9374,77.7796,2025-07-06,1200.0,2.0999999999999996,8,Large Truck,67c8fa73,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46,
 11,Krishna Traders,19.9975,73.7898,2025-07-06,760.0,2.6500000000000004,7,Large Truck,67c8fa73,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46,
@@ -16,3 +17,14 @@ customer_id,customer_name,latitude,longitude,delivery_date,total_weight_kg,total
 16,Satara Traders,17.68,74.0075,2025-07-06,700.0,1.05,3,Large Truck,67c8fa73,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46,
 3,Chaitanya Distributors,18.5204,73.8567,2025-07-06,800.0,1.2,2,Large Truck,67c8fa73,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46,
 1,Apollo Foods,19.0915,72.8935,2025-07-06,1000.0,1.5,1,Large Truck,67c8fa73,1,49600.3,1476.99,12000.0,79.42,Maharashtra,2204.46,
+=======
+10,Jain Suppliers,21.1458,79.0882,2025-07-06,1300.0,4.0,9,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+15,Patil Wholesalers,20.9374,77.7796,2025-07-06,1200.0,2.1,8,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+11,Krishna Traders,19.9975,73.7898,2025-07-06,760.0,2.6500000000000004,7,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+13,Mahadev Mart,19.8762,75.3433,2025-07-06,1690.0,5.2,6,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+14,Om Supermart,17.6599,75.9064,2025-07-06,1000.0,2.75,5,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+12,Lokmanya Stores,16.705,74.2433,2025-07-06,1080.0,1.9,4,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+16,Satara Traders,17.68,74.0075,2025-07-06,700.0,1.05,3,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+3,Chaitanya Distributors,18.5204,73.8567,2025-07-06,800.0,1.2,2,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+1,Apollo Foods,19.054999,72.8692035,2025-07-06,1000.0,1.5,1,Large Truck,6dbda88c,1,49605.82,1477.15,12000.0,79.42,Maharashtra,2204.7,
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)

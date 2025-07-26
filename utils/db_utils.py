@@ -33,10 +33,30 @@ def load_csv(filename):
         print(f"[WARN] File not found: {path}")
         return pd.DataFrame()
 
+<<<<<<< HEAD
 def save_csv(df, path):
     # Ensure the folder exists
     os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, index=False)
+=======
+# def save_csv(df, path):
+#     # Ensure the folder exists
+#     os.makedirs(os.path.dirname(path), exist_ok=True)
+#     df.to_csv(path, index=False)
+
+
+def save_csv(df, path):
+    # Ensure the 'data' folder is included in the path
+    full_path = os.path.join("data", path) if not path.startswith("data") else path
+
+    # Create directory only if it exists in path
+    dir_name = os.path.dirname(full_path)
+    if dir_name:
+        os.makedirs(dir_name, exist_ok=True)
+
+    df.to_csv(full_path, index=False)
+
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)
 
 # Delete entry by ID
 def delete_entry_by_id(df, id_column, delete_id):

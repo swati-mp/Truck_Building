@@ -9,9 +9,29 @@ st.title("📦 Product Master")
 PRODUCT_FILE = "products.csv"
 products_df = db_utils.load_csv(PRODUCT_FILE)
 
+<<<<<<< HEAD
 # ------------------ ADD NEW PRODUCT ------------------
 with st.expander("➕ Add New Product"):
     with st.form("add_product_form", clear_on_submit=True):
+=======
+# Auto-generate product_id starting from 101
+def get_next_product_id(df):
+    if df.empty or "product_id" not in df.columns:
+        return 101
+    try:
+        max_id = pd.to_numeric(df["product_id"], errors="coerce").dropna().astype(int).max()
+        return max(101, max_id + 1)
+    except:
+        return 101
+
+
+# ------------------ ADD NEW PRODUCT ------------------
+with st.expander("➕ Add New Product"):
+    with st.form("add_product_form", clear_on_submit=True):
+        auto_id = get_next_product_id(products_df)
+        st.markdown(f"**Auto-generated Truck ID:** `{auto_id}`")
+
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)
         product_name = st.text_input("Product Name")
         length_cm = st.number_input("Length (cm)", min_value=0.0, step=0.1, format="%.2f")
         width_cm = st.number_input("Width (cm)", min_value=0.0, step=0.1, format="%.2f")

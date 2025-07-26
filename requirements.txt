@@ -9,4 +9,10 @@ PyYAML
 streamlit-folium
 XlsxWriter
 routingpy
+<<<<<<< HEAD
 openrouteservice
+=======
+openrouteservice
+polyline
+requests
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)

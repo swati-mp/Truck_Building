@@ -1,12 +1,25 @@
 product_id,product_name,weight_per_box,size_per_box,available_stock
+<<<<<<< HEAD
 101,Milk Powder 1kg,10.0,0.015,10
 102,Basmati Rice 5kg,5.0,0.020,25
 103,Cooking Oil 15L,13.0,0.040,12
 104,Packaged Biscuits,2.5,0.010,50
+=======
+101,Milk Powder 1kg,10.0,0.015,0
+102,Basmati Rice 5kg,5.0,0.02,5
+103,Cooking Oil 15L,13.0,0.04,2
+104,Packaged Biscuits,2.5,0.01,40
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)
 105,Toilet Cleaner 1L,1.2,0.008,30
 106,Shampoo Bottles Pack,4.0,0.012,20
 107,Wheat Flour 10kg,10.0,0.025,18
 108,Bottled Water (12x1L),12.0,0.035,15
+<<<<<<< HEAD
 109,Laundry Detergent 2kg,2.0,0.010,40
 110,Tea Carton 500g,0.5,0.003,60
 
+=======
+109,Laundry Detergent 2kg,2.0,0.01,40
+110,Tea Carton 500g,0.5,0.003,60
+111,Santoor,10.0,0.001,50
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)

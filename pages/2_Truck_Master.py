@@ -29,9 +29,15 @@ with st.expander("➕ Add New Truck Type"):
         auto_id = get_next_truck_id(trucks_df)
         st.markdown(f"**Auto-generated Truck ID:** `{auto_id}`")
 
+<<<<<<< HEAD
         truck_type = st.text_input("Truck Type (e.g., 5 Tons, 10 Tons)")
         state = st.text_input("State (e.g., Maharashtra, Gujarat)")
         capacity_tons = st.number_input("Capacity (tons)", min_value=0.0, step=0.5, format="%.2f")
+=======
+        truck_type = st.text_input("Truck Type (e.g., MIni Truck, Large Truck)")
+        state = st.text_input("State (e.g., Maharashtra, Gujarat)")
+        capacity_tons = st.number_input("Capacity (e.g., 5 Tons, 10 Tons)", min_value=0.0, step=0.5, format="%.2f")
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)
         cost_per_km = st.number_input("Cost per KM (₹)", min_value=0.0, step=1.0, format="%.2f")
         fuel_efficiency_kmpl = st.number_input("Fuel Efficiency (KM per Litre)", min_value=1.0, step=0.5, format="%.2f")
 

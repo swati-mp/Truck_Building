@@ -1,4 +1,5 @@
 customer_id,customer_name,latitude,longitude,state,total_weight_kg,total_volume_m3,assigned_truck_type
+<<<<<<< HEAD
 1,Apollo Foods,19.0915,72.8935,Maharashtra,1000.0,1.5,Medium Truck
 3,Chaitanya Distributors,18.5204,73.8567,Maharashtra,800.0,1.2,Mini Truck
 10,Jain Suppliers,21.1458,79.0882,Maharashtra,1300.0,4.0,Medium Truck
@@ -8,3 +9,6 @@ customer_id,customer_name,latitude,longitude,state,total_weight_kg,total_volume_
 14,Om Supermart,17.6599,75.9064,Maharashtra,1000.0,2.75,Medium Truck
 15,Patil Wholesalers,20.9374,77.7796,Maharashtra,1200.0,2.1,Medium Truck
 16,Satara Traders,17.68,74.0075,Maharashtra,700.0,1.05,Tempo
+=======
+1,Apollo Foods,19.054999,72.8692035,Maharashtra,150.0,0.35,❌ No Suitable Truck Found
+>>>>>>> df81800 (Enhanced delivery map with GraphHopper for optimized truck routing.)
