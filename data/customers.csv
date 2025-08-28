@@ -1,0 +1,23 @@
+customer_id,customer_name,address,state,latitude,longitude,username,password,phone,email
+1,Apollo Foods,Mumbai,Maharashtra,19.0915,72.8935,user1,user123,9876543210.0,apollo@example.com
+2,Bharat Retail,Bangalore,Karnataka,12.9716,77.5946,user2,user234,9876543211.0,bharat@example.com
+3,Chaitanya Distributors,Pune,Maharashtra,18.5204,73.8567,user3,user345,9876543212.0,chaitanya@example.com
+4,Dev Retailers,Ahmedabad,Gujarat,23.0225,72.5714,user4,user456,9876543213.0,dev@example.com
+5,EcoMart,Hyderabad,Telangana,17.385,78.4867,user5,user567,9876543214.0,ecomart@example.com
+6,FreshMart,Chennai,Tamil Nadu,13.0827,80.2707,user6,user678,9876543215.0,freshmart@example.com
+7,Goyal Distributors,Jaipur,Rajasthan,26.9124,75.7873,user7,user789,9876543216.0,goyal@example.com
+8,HariBazaar,Surat,Gujarat,21.1702,72.8311,user8,user890,9876543217.0,hari@example.com
+9,Indore Wholesalers,Indore,Madhya Pradesh,22.7196,75.8577,user9,user901,9876543218.0,indore@example.com
+10,Jain Suppliers,Nagpur,Maharashtra,21.1458,79.0882,user10,user012,9876543219.0,jain@example.com
+11,Krishna Traders,Nashik,Maharashtra,19.9975,73.7898,user11,user111,9876543220.0,krishna@example.com
+12,Lokmanya Stores,Kolhapur,Maharashtra,16.705,74.2433,user12,user222,9876543221.0,lokmanya@example.com
+13,Mahadev Mart,Aurangabad,Maharashtra,19.8762,75.3433,user13,user333,9876543222.0,mahadev@example.com
+14,Om Supermart,Solapur,Maharashtra,17.6599,75.9064,user14,user444,9876543223.0,om@example.com
+15,Patil Wholesalers,Amravati,Maharashtra,20.9374,77.7796,user15,user555,9876543224.0,patil@example.com
+16,Satara Traders,Satara,Maharashtra,17.68,74.0075,user16,user666,9876543225.0,satara@example.com
+17,Annapurna Traders,Mysore,Karnataka,12.2958,76.6394,user17,user777,9876543226.0,annapurna@example.com
+18,Namma Supermart,Hubli,Karnataka,15.3647,75.1239,user18,user888,9876543227.0,namma@example.com
+19,Shakti Distributors,Mangalore,Karnataka,12.9141,74.856,user19,user999,9876543228.0,shakti@example.com
+20,Vidya Stores,Belgaum,Karnataka,15.8497,74.4977,user20,user100,9876543229.0,vidya@example.com
+21,Shree Traders,Andheri East Mumbai,Maharashtra,19.1158835,72.854202,shreetraders,pass123,9876543210.0,shreetraders@gmail.com
+22,Global Mart,Navrangpura Ahmedabad,Gujarat,23.0359998,72.5643429,user21,user21,,

@@ -1,0 +1,28 @@
+Truck-Delivery-Optimizer/
+│
+├── data/
+│   ├── customers.csv           # Customer details incl. geolocation
+│   ├── trucks.csv              # Truck types, capacity (tons), volume, cost/km
+│   ├── products.csv            # Products with size (LxWxH), weight
+│   └── orders.csv              # Orders incl. product_id, qty, delivery_date
+│
+├── config/
+│   └── config.json             # Min/Max truck load %, API keys, etc.
+│
+├── pages/                      # Streamlit Pages
+│   ├── 1_Customer_Master.py
+│   ├── 2_Truck_Master.py
+│   ├── 3_Product_Master.py
+│   ├── 4_Order_Transaction.py
+│   ├── 5_Truck_Config.py
+│   └── 6_Truck_Allocation_Report.py
+│
+├── utils/                      # Python Modules
+│   ├── db_utils.py             # CRUD for CSVs or SQLite
+│   ├── logic.py                # Allocation, load optimization, FILO loading
+│   ├── route_utils.py          # Nearest neighbor route optimization
+│   └── map_utils.py            # Folium/Leaflet route visualization
+│
+├── main.py                     # Streamlit Entry
+├── requirements.txt            # Python Libraries
+└── README.md                   # Project Documentation
